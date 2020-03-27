@@ -6,53 +6,85 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
-  const [clicks, setClicks] = useState({
-    good: 0, neutral: 0, bad: 0
-  })
 
-  const all = clicks.good + clicks.bad + clicks.neutral
 
-  const average = (clicks.good + (clicks.bad * (-1))) / all || 0
+  const average = (good + (bad * (-1))) / (good + bad + neutral) || 0
 
-  const positive = clicks.good / all * 100 || 0
-
+  const positive = good / (good + bad + neutral) * 100 || 0
 
 
   const handlegoodClick = () =>
-    setClicks({ ...clicks, good: clicks.good + 1 })
+    setGood(good + 1)
 
   const handleneutralClick = () =>
-    setClicks({ ...clicks, neutral: clicks.neutral + 1 })
+    setNeutral(neutral + 1)
 
   const handlebadClick = () =>
-    setClicks({ ...clicks, bad: clicks.bad + 1 })
+    setBad(bad + 1)
+
+
 
   return (
     <div>
       <h1>Give Feedback</h1>
       <div>
-        <button onClick={handlegoodClick}>good</button>
-        <button onClick={handleneutralClick}>neutral</button>
-        <button onClick={handlebadClick}>bad</button>
+        <Button onClick={handlegoodClick} text="good" />
+        <Button onClick={handleneutralClick} text="neutral" />
+        <Button onClick={handlebadClick} text="bad" />
+
       </div>
       <h1> Statistics </h1>
-      <Statistics clicks={clicks} all={all} average={average} positive={positive} />
+
+      <Statistics good={good} bad={bad} neutral={neutral}
+        average={average} positive={positive} />
     </div>
   )
 }
 
+const Button = ({ onClick, text }) => (
+  <button onClick={onClick}>
+    {text}
+  </button>
+)
 
 const Statistics = (props) => {
+  if ((props.good + props.bad + props.neutral) === 0) {
+    return (
+      <div>
+        No feedback given
+      </div>
+    )
+  }
   return (
-    <div>
-      <div>good {props.clicks.good} </div>
-      <div>neutral {props.clicks.neutral} </div>
-      <div>bad {props.clicks.bad} </div>
-      <div>all {props.all}</div>
-      <div> average {props.average}</div>
-      <div>positive {props.positive} %</div>
-    </div>
 
+    <table>
+      <tbody>
+        <tr><StatisticLine text="good" value={props.good} /></tr>
+        <tr><StatisticLine text="neutral" value={props.neutral} /></tr>
+        <tr><StatisticLine text="bad" value={props.bad} /></tr>
+        <tr><StatisticLine text="all" value={props.good + props.bad + props.neutral} /></tr>
+        <tr><StatisticLine text="average" value={props.average} /></tr>
+        <tr><StatisticLine text="positive" value={props.positive} /></tr>
+      </tbody>
+    </table>
+
+  )
+
+}
+
+const StatisticLine = ({ text, value }) => {
+
+  if (text === "positive") {
+    return (
+      <>
+        <td>{text}</td><td>{value}</td>
+      </>
+    )
+  }
+  return (
+    <>
+      <td>{text}</td><td>{value} %</td>
+    </>
   )
 }
 
