@@ -12,7 +12,6 @@ const App = () => {
   const [newFilter, setNewFilter] = useState('')
   const [showAll] = useState(false)
 
- 
 
   useEffect(() => {
 
