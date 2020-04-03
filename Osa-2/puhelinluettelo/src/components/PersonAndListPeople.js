@@ -1,8 +1,16 @@
 import React from 'react'
 
-const Person = ({ person }) => {
+
+const Person = ({person}) => { 
+
     return (
-        <p> {person.name} {person.number} </p>
+
+        <div >
+            <p> {person.name} {person.number}
+
+                <button onClick={() => { removePerson(person.id) }}>Delete</button>
+            </p>
+        </div>
     )
 }
 
@@ -11,8 +19,11 @@ const ListPeople = (props) => {
     return (
         <div>
             {props.namesToShow.map((name) =>
-                <Person key={name.name} person={name} />
+                <Person key={name.name} person={name} onClick = {name.removePerson} />
+
+
             )}
+
         </div>
     )
 }
