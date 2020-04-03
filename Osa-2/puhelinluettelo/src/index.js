@@ -1,17 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import PersonForm from './components/PersonForm'
 import ShowFilter from './components/ShowFilter'
 import ListPeople from './components/PersonAndListPeople'
+import axios from 'axios'
 
 const App = () => {
-  const [persons, setPersons] = useState([
-
-  ])
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
   const [showAll] = useState(false)
+
+ 
+
+  useEffect(() => {
+
+    const eventHandler = response => {
+      setPersons(response.data)
+    }
+
+    const promise = axios.get('http://localhost:3001/persons')
+    promise.then(eventHandler)
+
+  }, [])
+   
 
   const handleNewName = (event) => {
     console.log(event.target.value)
@@ -62,9 +75,10 @@ const App = () => {
       <ListPeople namesToShow={namesToShow} />
     </div >
   )
-
 }
 
 export default App
 
-ReactDOM.render(<App />, document.getElementById('root'))
+
+
+ReactDOM.render(<App />, document.getElementById('root')) 
