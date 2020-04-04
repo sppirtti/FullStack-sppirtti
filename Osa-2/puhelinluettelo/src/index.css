@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+  font-style: unset;
+  color: blue;
+}
+
+.added{
+  color: green;
+  background: white;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  background: lightgray;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+
+}

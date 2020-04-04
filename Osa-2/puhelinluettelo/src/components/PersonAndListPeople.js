@@ -1,29 +1,26 @@
 import React from 'react'
 
-
-const Person = ({person}) => { 
+const Person = (props) => {
 
     return (
 
         <div >
-            <p> {person.name} {person.number}
-
-                <button onClick={() => { removePerson(person.id) }}>Delete</button>
+            <p>
+                {props.name} {props.number}
+                <button onClick={props.removePerson} >Delete </button>
             </p>
-        </div>
+        </div >
     )
 }
 
-
 const ListPeople = (props) => {
+
     return (
         <div>
-            {props.namesToShow.map((name) =>
-                <Person key={name.name} person={name} onClick = {name.removePerson} />
-
+            {props.namesToShow.map((person) =>
+                <Person key={person.name} name={person.name} id={person.id} number={person.number} removePerson={() => props.removePerson(person)} />
 
             )}
-
         </div>
     )
 }
