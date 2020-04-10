@@ -16,8 +16,6 @@ const App = () => {
   const [message, setMessage] = useState(null)
   const [className, setClassName] = useState(null)
 
-
-
   useEffect(() => {
     personService
       .getAll()
@@ -48,17 +46,7 @@ const App = () => {
         .then(leftPersons => {
           setPersons(persons.filter(p => p.id !== person.id))
         })
-        .catch(error => {
-          setMessage('Person has already been removed')
-          setClassName('error')
-          setTimeout(() => {
-            setMessage(null)
-            setClassName(null)
-          }, 5000)
-        })
-      setMessage(
-        `Removed succesfully!`
-      )
+      setMessage(`Removed succesfully!`)
       setClassName('added')
       setTimeout(() => {
         setMessage(null)
@@ -87,7 +75,7 @@ const App = () => {
         const tmp = persons.find(tmp => tmp.name === newName)
         personService
           .update(tmp.id, nameObject)
-          
+
           .then(response => {
             setPersons(persons.map(person => person.id !== tmp.id ? person : response.data))
             setNewName('')
@@ -108,7 +96,7 @@ const App = () => {
               setClassName(null)
             }, 5000);
           })
-          
+
       }
 
     } else {
