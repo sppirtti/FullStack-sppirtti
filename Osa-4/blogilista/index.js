@@ -1,13 +1,14 @@
+
 const http = require('http')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const mongoose = require('mongoose')
+const config = require('./utils/config')
 
 app.use(cors())
 app.use(express.json())
 
-const Blog = mongoose.model('Blog', blogSchema)
+const Blog = require('./models/blog')
 
 app.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
@@ -32,7 +33,6 @@ app.post('/api/blogs', (request, response) => {
         })
 })
 
-const PORT = process.env.PORT
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+app.listen(config.PORT, () => {
+    console.log(`Server running on port ${config.PORT}`)
 })
