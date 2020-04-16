@@ -15,11 +15,11 @@ const blogSchema = mongoose.Schema({
     likes: Number
 })
 
-console.log("luotu sceme")
+
 
 const Blog = mongoose.model('Blog', blogSchema)
-
-const mongoUrl = 'mongodb+srv://sppirtti:Blapsin_321@cluster0-pkxno.mongodb.net/blogilista-app?retryWrites=true&w=majority'
+console.log('SALASANA PUUTTUU')
+const mongoUrl = 'mongodb+srv://sppirtti:SALASANA@cluster0-pkxno.mongodb.net/blogilista-app?retryWrites=true&w=majority'
 
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 
