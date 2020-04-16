@@ -19,7 +19,7 @@ const blogSchema = mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 console.log('SALASANA PUUTTUU')
-const mongoUrl = 'mongodb+srv://sppirtti:SALASANA@cluster0-pkxno.mongodb.net/blogilista-app?retryWrites=true&w=majority'
+const mongoUrl = 'mongodb+srv://sppirtti:SALAKALASANA@cluster0-pkxno.mongodb.net/blogilista-app?retryWrites=true&w=majority'
 
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 
