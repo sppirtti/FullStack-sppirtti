@@ -5,23 +5,23 @@ blogsRouter.get('/', (req, res) => {
     res.send('<h1>Hello World!</h1>')
 })
 
-blogsRouter.get('/api/blogs', (request, response) => {
-    Blog
-        .find({})
-        .then(blogs => {
-           response.json(blogs.map(blog => blog.toJSON())) 
-        })
-            
+blogsRouter.get('/api/blogs', async (request, response) => {
+    const blogs = await Blog.find({})
+    response.json(blogs.map(blog => blog.toJSON()))
 })
 
-blogsRouter.post('/api/blogs', (request, response) => {
-    const blog = new Blog(request.body)
+blogsRouter.post('/api/blogs', async (request, response) => {
+    const body = request.body
+    
+    const blog = new Blog({
+        title: body.title,
+        author: body.author,
+        url: body.url,
+        likes: body.likes
+    })
 
-    blog
-        .save()
-        .then(result => {
-            response.status(201).json(result)
-        })
+    const savedBlog = await blog.save()
+    response.json(savedBlog.toJSON())
 })
 
 module.exports = blogsRouter
