@@ -59,7 +59,6 @@ test('Blog can be added', async () => {
 
   const response = await api.get('/api/blogs')
   expect(response.body).toHaveLength(initialBlogs.length + 1)
-
 })
 
 afterAll(() => {
