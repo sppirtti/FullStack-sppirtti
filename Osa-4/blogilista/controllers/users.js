@@ -5,7 +5,7 @@ const User = require('../models/user')
 
 usersRouter.get('/api/users', async (request, response) => {
 
-    const users = await User.find({})
+    const users = await User.find({}).populate('blogs', {author: 1, title: 1})
     response.json(users.map(users => users.toJSON()))
 })
 
