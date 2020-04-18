@@ -5,7 +5,6 @@ const Blog = require('../models/blog')
 
 const api = supertest(app)
 
-
 const initialBlogs = [
 
   {
@@ -61,14 +60,14 @@ test('Blog can be added', async () => {
   expect(response.body).toHaveLength(initialBlogs.length + 1)
 })
 
-/*
 
-test('If likes null, likes set to zero', async () => {
+test('If likes UNDEF, likes set to zero', async () => {
+
   const newBlog = {
     title: 'ARPAA',
     author: 'veikkaus',
-    url: 'veikkaus.fi',
-    likes: null
+    url: 'veikkaus.fi'
+  
   }
 
   await api
@@ -78,11 +77,12 @@ test('If likes null, likes set to zero', async () => {
     .expect('Content-Type', /application\/json/)
 
   const response = await api.get('/api/blogs')
-  expect(response.body.likes).toBe(0)
+  expect(response.body[2].author).toBe('veikkaus')
+  expect(response.body[2].likes).toBe(0)
 
 })
 
-*/
+
 
 afterAll(() => {
   mongoose.connection.close()

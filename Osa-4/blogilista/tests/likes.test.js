@@ -8,7 +8,7 @@ test('dummy returns one', () => {
 })
 
 describe('total likes', () => {
-    const listWithOneBlog = [
+    const oneBlog = [
         {
             _id: '5a422aa71b54a676234d17f8',
             title: 'Go To Statement Considered Harmful',
@@ -52,7 +52,7 @@ describe('total likes', () => {
 
 
     test('one blog', () => {
-        const result = listHelper.totalLikes(listWithOneBlog)
+        const result = listHelper.totalLikes(oneBlog)
         expect(result).toBe(5)
 
     })
