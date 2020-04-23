@@ -8,9 +8,12 @@ const userSchema = mongoose.Schema({
     username: {
         type: String,
         unique: true,
+        minlength: 3,
+        required: true
     },
     passwordHash: {
         type: String,
+        required: true
     },
     name: String,
     blogs: [
