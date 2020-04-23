@@ -70,11 +70,14 @@ const App = () => {
       number: newNumber
     }
 
+
     if (persons.some(person => person.name === nameObject.name)) {
       if (window.confirm(`Update number for ${newName} ? `)) {
         const tmp = persons.find(tmp => tmp.name === newName)
         personService
           .update(tmp.id, nameObject)
+
+
 
           .then(response => {
             setPersons(persons.map(person => person.id !== tmp.id ? person : response.data))
@@ -88,6 +91,7 @@ const App = () => {
               setClassName(null)
             }, 5000);
           })
+          
           .catch(error => {
             setMessage('Person has been deleted!')
             setClassName('error')
@@ -107,6 +111,14 @@ const App = () => {
           setPersons(persons.concat(response.data))
           setNewName('')
           setNewNumber('')
+        })
+        .catch(error => {
+          setClassName('error')
+          setMessage(error.response.data.error)
+          setTimeout(() => {
+            setMessage(null)
+            setClassName(null)
+          }, 5000)
         })
       setMessage(
         `${newName} added succesfully!`
