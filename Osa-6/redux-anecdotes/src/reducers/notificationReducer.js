@@ -12,7 +12,10 @@ export const setNotification = (text) => {
     return {
         type: 'SET_NOTIFICATION',
         text
+
+        
     }
+    
 }
 
 export default notificationReducer
