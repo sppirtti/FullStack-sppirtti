@@ -1,30 +1,18 @@
-const reducer = (state = "", action) => {
 
-    
+const notificationReducer = (state = '', action) => {
     switch (action.type) {
-
-        case 'NOTIFICATION':
-            return action.data.message
-        case 'CLEAR':
-            return ""
-
+        case 'SET_NOTIFICATION':
+            return action.text
         default:
             return state
     }
 }
 
-export const setNotification = (message) => {
-    return async dispatch => {
-        dispatch({
-            type: 'NOTIFICATION',
-            data: {message}
-        })
-        setTimeout(() => {
-            dispatch({
-                type: 'CLEAR'
-            })
-        }, 5000)
+export const setNotification = (text) => {
+    return {
+        type: 'SET_NOTIFICATION',
+        text
     }
 }
 
-export default reducer
+export default notificationReducer
