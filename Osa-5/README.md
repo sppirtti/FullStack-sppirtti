@@ -4,4 +4,4 @@ Jostain syystä git oli pudottanut frontendin kansion kokonaan hallinnasta ja en
 
 https://github.com/sppirtti/FullStackOsa5
 
-Koodin pitäisi vastata backendin osalta tätä palautusta 100%
+Koodi on kokonaisuudessaan tehty ennen palautusta ja ongelma (ikävä kyllä) huomattu vasta palautuksen jälkeen.
