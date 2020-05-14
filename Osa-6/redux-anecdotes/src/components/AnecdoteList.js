@@ -7,13 +7,18 @@ const Anecdote = ({ anecdote, handleClick }) => {
     return (
         <li>
             <div key={anecdote.id}>
+
                 <div>
                     {anecdote.content}
                 </div>
+
                 <div>
                     has {anecdote.votes}
+
                     <button onClick={handleClick}>vote</button>
+
                 </div>
+
             </div>
         </li>
     )
@@ -21,7 +26,9 @@ const Anecdote = ({ anecdote, handleClick }) => {
 
 
 const AnecdoteList = () => {
+    
     const dispatch = useDispatch()
+
     const anecdotes = useSelector(state => state.anecdotes)
 
     return (
@@ -32,10 +39,7 @@ const AnecdoteList = () => {
                     anecdote={anecdote}
                     handleClick={() => {
                         dispatch(voteAnecdote(anecdote.id, anecdote.content, anecdote.votes))
-                        dispatch(setNotification(`Voted ${anecdote.content}`))
-                        setTimeout(()=> {
-                            dispatch(setNotification(''))
-                        },5000)
+                        dispatch(setNotification(`you voted ${anecdote.content}`, 5000))
                     }
                     }
                 />
